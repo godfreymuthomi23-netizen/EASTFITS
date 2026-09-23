@@ -1394,54 +1394,58 @@ function outfitImage(audience,index,variant){
  return `${base}&crop=faces&fp-x=${x.toFixed(1)}&fp-y=${y.toFixed(1)}`;
 }
 const products=[
- {id:1,name:"Utility Overshirt",price:950,market:1100,cat:"Women",audience:"Women",img:photoSets.Women[0],tag:"NEW",desc:"Structured utility overshirt with a relaxed streetwear fit.",source:"Nairobi marketplace"},
- {id:2,name:"Wide Leg Cargo",price:1000,market:1100,cat:"Men",audience:"Men",img:photoSets.Men[0],tag:"NEW",desc:"Roomy cargo silhouette designed for movement and everyday city wear.",source:"Nairobi marketplace"},
- {id:3,name:"Graphic Cotton Tee",price:750,market:950,cat:"Men",audience:"Men",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",tag:"HOT",desc:"Heavy cotton tee with a clean graphic-led silhouette.",source:"Nairobi marketplace"},
- {id:4,name:"Everyday Baseball Cap",price:650,market:850,cat:"Accessories",audience:"All",img:"https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=85",tag:"",desc:"Low-profile cap that finishes a daily streetwear uniform.",source:"Nairobi marketplace"},
- {id:5,name:"Workwear Denim Jacket",price:1100,market:1100,cat:"Men",audience:"Men",img:"https://images.unsplash.com/photo-1495105787522-5334e3ffa0ef?auto=format&fit=crop&w=900&q=85",tag:"LIMITED",desc:"Layer-ready denim jacket with a durable workwear finish.",source:"Nairobi marketplace"},
- {id:6,name:"Relaxed City Shorts",price:800,market:1000,cat:"Women",audience:"Women",img:"https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=900&q=85",tag:"NEW",desc:"Relaxed shorts built for warm Nairobi afternoons and weekends.",source:"Nairobi marketplace"}
+ {id:1,name:"Utility Overshirt",price:950,market:1100,color:"Olive green",cat:"Women",audience:"Women",img:photoSets.Women[0],tag:"NEW",desc:"Structured olive utility overshirt with a relaxed streetwear fit.",source:"Nairobi marketplace estimate"},
+ {id:2,name:"Wide Leg Cargo",price:1000,market:1100,color:"Black",cat:"Men",audience:"Men",img:photoSets.Men[0],tag:"NEW",desc:"Roomy black cargo silhouette designed for movement and everyday city wear.",source:"Nairobi marketplace estimate"},
+ {id:3,name:"Graphic Cotton Tee",price:750,market:950,color:"White",cat:"Men",audience:"Men",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",tag:"HOT",desc:"Heavy white cotton tee with a clean graphic-led silhouette.",source:"Nairobi marketplace estimate"},
+ {id:4,name:"Everyday Baseball Cap",price:650,market:850,color:"Black",cat:"Accessories",audience:"All",img:"https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=85",tag:"",desc:"Black low-profile cap that finishes a daily streetwear uniform.",source:"Nairobi marketplace estimate"},
+ {id:5,name:"Workwear Denim Jacket",price:1100,market:1100,color:"Blue denim",cat:"Men",audience:"Men",img:"https://images.unsplash.com/photo-1495105787522-5334e3ffa0ef?auto=format&fit=crop&w=900&q=85",tag:"LIMITED",desc:"Blue denim layer-ready jacket with a durable workwear finish.",source:"Nairobi marketplace estimate"},
+ {id:6,name:"Relaxed City Shorts",price:800,market:1000,color:"Beige",cat:"Women",audience:"Women",img:"https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=900&q=85",tag:"NEW",desc:"Relaxed beige shorts built for warm Nairobi afternoons and weekends.",source:"Nairobi marketplace estimate"}
 ];
 let nextId=7;
 for(const audience of ["Men","Women","Kids"]){
  outfitNames[audience].forEach((name,index)=>{
   for(let variant=1;variant<=4;variant++){
    const price=650+((index*37+variant*53)%451);
-  products.push({id:nextId++,name:`${name} ${variant}`,price,market:Math.min(1100,price+100),cat:audience,audience,img:outfitImage(audience,index,variant),tag:variant===1?"NEW":"",desc:`Real ${audience.toLowerCase()} ${name.toLowerCase()} outfit from the affordable Eastfits edit.`,source:"Nairobi marketplace"});
+  products.push({id:nextId++,name:`${name} ${variant}`,price,market:Math.min(1100,price+100),color:"Assorted photo color",cat:audience,audience,img:outfitImage(audience,index,variant),tag:variant===1?"NEW":"",desc:`Real ${audience.toLowerCase()} ${name.toLowerCase()} outfit from the affordable Eastfits edit.`,source:"Nairobi marketplace estimate"});
   }
  });
 }
 const uploadedProducts=[
- ["Hoodie Mustard","assets/hoodie_PNG26.png", "Hoodies"],
- ["Hoodie Green","assets/hoodie_PNG32.png", "Hoodies"],
- ["Hoodie Purple","assets/hoodie_PNG36.png", "Hoodies"],
- ["Hoodie White Crest","assets/hoodie_PNG41.png", "Hoodies"],
- ["Hoodie White Back","assets/hoodie_PNG45.png", "Hoodies"],
- ["Hoodie White Classic","assets/hoodie_PNG5.png", "Hoodies"],
- ["Hoodie White Pullover","assets/hoodie_PNG6.png", "Hoodies"],
- ["Canvas Backpack Olive","assets/backpack_PNG6333.png", "Accessories"],
- ["Urban Laptop Backpack","assets/backpack_PNG6348.png", "Accessories"],
- ["AirPods White","assets/airPods_PNG28.png", "Electronics"],
- ["AirPods Case White","assets/airPods_PNG35.png", "Electronics"],
- ["AirPods Case Black","assets/airPods_PNG37.png", "Electronics"],
- ["AirPods Case Clear","assets/airPods_PNG39.png", "Electronics"],
- ["Apple Watch Sport","assets/apple_watch_PNG30.png", "Electronics"],
- ["Apple Watch Silver","assets/apple_watch_PNG49.png", "Electronics"],
- ["Apple Watch Black","assets/apple_watch_PNG55.png", "Electronics"],
- ["Apple Watch Blue","assets/apple_watch_PNG62.png", "Electronics"],
- ["Apple Watch Pink","assets/apple_watch_PNG64.png", "Electronics"],
- ["Apple Watch Gold","assets/apple_watch_PNG67.png", "Electronics"],
- ["Apple Watch Classic","assets/apple_watch_PNG69.png", "Electronics"],
- ["Wireless Headphones Black","assets/headphones_PNG101964.png", "Electronics"],
- ["Wireless Headphones Gray","assets/headphones_PNG101980.png", "Electronics"],
- ["iPhone 17 Blue","assets/iphone17_PNG17.png", "Electronics"],
- ["iPhone 17 Silver","assets/iphone17_PNG30.png", "Electronics"],
- ["iPhone 17 Black","assets/iphone17_PNG32.png", "Electronics"],
- ["iPhone 17 Gold","assets/iphone17_PNG36.png", "Electronics"],
- ["MacBook Air","assets/macbook_PNG101754.png", "Electronics"]
+ ["Hoodie Mustard","assets/hoodie_PNG26.png", "Hoodies", "Mustard yellow"],
+ ["Hoodie Green","assets/hoodie_PNG32.png", "Hoodies", "Emerald green"],
+ ["Hoodie Purple","assets/hoodie_PNG36.png", "Hoodies", "Purple"],
+ ["Hoodie White Crest","assets/hoodie_PNG41.png", "Hoodies", "White"],
+ ["Hoodie White Back","assets/hoodie_PNG45.png", "Hoodies", "White"],
+ ["Hoodie White Classic","assets/hoodie_PNG5.png", "Hoodies", "White"],
+ ["Hoodie White Pullover","assets/hoodie_PNG6.png", "Hoodies", "White"],
+ ["Canvas Backpack Olive","assets/backpack_PNG6333.png", "Accessories", "Olive green"],
+ ["Urban Laptop Backpack","assets/backpack_PNG6348.png", "Accessories", "Black"],
+ ["AirPods White","assets/airPods_PNG28.png", "Electronics", "White"],
+ ["AirPods Case White","assets/airPods_PNG35.png", "Electronics", "White"],
+ ["AirPods Case Black","assets/airPods_PNG37.png", "Electronics", "Black"],
+ ["AirPods Case Clear","assets/airPods_PNG39.png", "Electronics", "Clear"],
+ ["Apple Watch Sport","assets/apple_watch_PNG30.png", "Electronics", "Black"],
+ ["Apple Watch Silver","assets/apple_watch_PNG49.png", "Electronics", "Silver"],
+ ["Apple Watch Black","assets/apple_watch_PNG55.png", "Electronics", "Black"],
+ ["Apple Watch Blue","assets/apple_watch_PNG62.png", "Electronics", "Blue"],
+ ["Apple Watch Pink","assets/apple_watch_PNG64.png", "Electronics", "Pink"],
+ ["Apple Watch Gold","assets/apple_watch_PNG67.png", "Electronics", "Gold"],
+ ["Apple Watch Classic","assets/apple_watch_PNG69.png", "Electronics", "Black"],
+ ["Wireless Headphones Black","assets/headphones_PNG101964.png", "Electronics", "Black"],
+ ["Wireless Headphones Gray","assets/headphones_PNG101980.png", "Electronics", "Gray"],
+ ["iPhone 17 Blue","assets/iphone17_PNG17.png", "Electronics", "Blue"],
+ ["iPhone 17 Silver","assets/iphone17_PNG30.png", "Electronics", "Silver"],
+ ["iPhone 17 Black","assets/iphone17_PNG32.png", "Electronics", "Black"],
+ ["iPhone 17 Gold","assets/iphone17_PNG36.png", "Electronics", "Gold"],
+ ["MacBook Air","assets/macbook_PNG101754.png", "Electronics", "Silver"]
 ];
-uploadedProducts.forEach(([name,img,cat],index)=>{
+uploadedProducts.forEach(([name,img,cat,color],index)=>{
  const price=cat==="Electronics"?850+((index*17)%251):700+((index*31)%401);
- products.push({id:nextId++,name,price,market:Math.min(1100,price+100),cat,audience:"All",img,tag:"UPLOADED",desc:`Uploaded ${cat.toLowerCase()} product classified for the Eastfits catalog.`,source:"Eastfits uploaded inventory"});
+ products.push({id:nextId++,name,price,market:Math.min(1100,price+100),color,cat,audience:"All",img,tag:"UPLOADED",desc:`${color} ${cat.toLowerCase()} product classified for the Eastfits catalog.`,source:"Eastfits uploaded inventory estimate"});
+});
+products.forEach(product=>{
+ product.price=Math.max(100,product.price-500);
+ product.market=Math.max(product.price,Math.min(1100,product.market-500));
 });
 let cart=[];
 let filtered=[...products];
@@ -1462,6 +1466,7 @@ function render(list, target){
     <img src="${p.img}" alt="${p.name}" onclick="openModal(${p.id})">
    </div>
   <h3>${p.name}</h3><div class="price">${money(p.price)}</div>
+  <div class="market-row"><span>Color: ${p.color}</span><strong>Kenya estimate</strong></div>
   <div class="market-row"><span>${p.cat} · ${p.audience} fit</span><strong>Max KSh 1,100</strong></div>
    <div class="market-row"><span>Market avg.</span><strong>${money(p.market)}</strong></div>
    <button class="add" onclick="addToCart(${p.id})">ADD TO CART</button>
