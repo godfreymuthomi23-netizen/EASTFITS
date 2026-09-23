@@ -91,14 +91,55 @@ a {
 }
 
 .logo {
-  font-size: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   font-weight: 900;
   letter-spacing: -2px;
   font-style: italic;
+  color: var(--ink);
 }
 
-.logo span {
-  color: var(--accent);
+.ef-mark {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 10px 4px;
+  border-radius: 16px 14px 10px 16px;
+  background: #111;
+  box-shadow: inset 0 0 0 3px rgba(255,255,255,0.88);
+  color: #fff;
+  font-size: 40px;
+  line-height: 0.75;
+  transform: skewX(-10deg);
+}
+
+.ef-mark > span {
+  display: inline-block;
+  transform: skewX(10deg);
+}
+
+.ef-f {
+  position: relative;
+  margin-left: -6px;
+}
+
+.ef-f::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  top: 28%;
+  width: 42%;
+  height: 18%;
+  background: #ff3d3d;
+  border-radius: 4px;
+}
+
+.logo-word {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
 }
 
 .search {
@@ -217,6 +258,69 @@ a {
 
 .sale {
   color: var(--accent-strong) !important;
+}
+
+.brand-showcase {
+  background: #050505;
+  padding: 34px 20px 20px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.brand-sign {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.ef-mark-large {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: clamp(8rem, 18vw, 24rem);
+  line-height: 0.7;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.12em;
+  color: #f5f5f5;
+  transform: skewX(-6deg);
+}
+
+.ef-e-large,
+.ef-f-large {
+  display: inline-block;
+  position: relative;
+  background: #f5f5f5;
+  color: #f5f5f5;
+  padding: 0 0.06em;
+  border-radius: 0.12em;
+}
+
+.ef-f-large {
+  margin-left: -0.12em;
+}
+
+.ef-f-large::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  top: 30%;
+  width: 42%;
+  height: 16%;
+  background: #ff3d3d;
+  border-radius: 4px;
+}
+
+.eastfits-word {
+  display: inline-block;
+  font-size: clamp(2.8rem, 7vw, 7rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+  color: #fff;
+  text-transform: uppercase;
 }
 
 .mobile-menu {
@@ -972,7 +1076,13 @@ footer h4 {
 <header class="header">
   <div class="head-inner">
     <button class="mobile-menu" onclick="toggleNav()">☰</button>
-    <a class="logo" href="#">East<span>fits</span></a>
+    <a class="logo" href="#" aria-label="Eastfits home">
+      <span class="ef-mark">
+        <span class="ef-e">E</span>
+        <span class="ef-f">F</span>
+      </span>
+      <span class="logo-word">EASTFITS</span>
+    </a>
     <div class="search">
       <input id="searchInput" placeholder="Search hoodies, cargos, tees..." oninput="searchProducts()">
       <button onclick="searchProducts()">⌕</button>
@@ -995,6 +1105,16 @@ footer h4 {
     </div>
   </nav>
 </header>
+
+<section class="brand-showcase" aria-label="Eastfits brand logo">
+  <div class="brand-sign">
+    <div class="ef-mark-large" aria-hidden="true">
+      <span class="ef-e-large">E</span>
+      <span class="ef-f-large">F</span>
+    </div>
+    <div class="eastfits-word">EASTFITS</div>
+  </div>
+</section>
 
 <main>
 <section class="hero" id="home">
