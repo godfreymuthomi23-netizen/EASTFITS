@@ -620,6 +620,32 @@ main {
   color: #fff;
 }
 
+.audience-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 18px 28px 0;
+}
+
+.audience-tab {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.audience-tab.active,
+.audience-tab:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
 .catalog-panel {
   display: none;
 }
@@ -1131,6 +1157,8 @@ footer h4 {
 
   .catalog-tabs { margin-left: 16px; margin-right: 16px; }
 
+  .audience-tabs { margin-left: 16px; margin-right: 16px; }
+
   .form {
     flex-direction: column;
     border-radius: 16px;
@@ -1231,8 +1259,14 @@ footer h4 {
 </nav>
 
 <section class="catalog-panel active" id="shopView">
+<div class="audience-tabs" aria-label="Shop by fit">
+  <button class="audience-tab active" onclick="filterAudience('All', this)">All fits</button>
+  <button class="audience-tab" onclick="filterAudience('Men', this)">Men</button>
+  <button class="audience-tab" onclick="filterAudience('Women', this)">Women</button>
+  <button class="audience-tab" onclick="filterAudience('Kids', this)">Kids</button>
+</div>
 <section class="section" id="new">
-  <div class="section-head"><h2>NEW ARRIVALS</h2><a href="#shop">VIEW ALL →</a></div>
+  <div class="section-head"><h2>NEW ARRIVALS</h2><a href="#shop">EVERYTHING UNDER KSh 1,100 →</a></div>
   <div class="products" id="productGrid"></div>
 </section>
 
@@ -1323,14 +1357,48 @@ footer h4 {
 <div class="toast" id="toast"></div>
 
 <script>
+const photoSets={
+ Men:[
+  "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=85"
+ ],
+ Women:[
+  "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=900&q=85"
+ ],
+ Kids:[
+  "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=900&q=85"
+ ]
+};
+const outfitNames={
+ Men:["Classic Tee","Everyday Polo","Relaxed Shirt","Utility Shorts","City Joggers","Denim Overshirt","Basic Hoodie","Cotton Trousers","Street Tank","Weekend Cargo"],
+ Women:["Ribbed Top","Relaxed Tee","Denim Skirt","Wide Leg Trousers","Cropped Jacket","Cotton Dress","City Shorts","Knit Top","Utility Shirt","Everyday Joggers"],
+ Kids:["Play Tee","Mini Joggers","School Hoodie","Denim Shorts","Colour Block Top","Cotton Dress","Weekend Set","Zip Jacket","Graphic Tee","Soft Track Pants"]
+};
 const products=[
- {id:1,name:"Utility Overshirt",price:4500,market:5200,cat:"Women",img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85",tag:"NEW",desc:"Structured utility overshirt with a relaxed streetwear fit.",source:"Nairobi marketplace"},
- {id:2,name:"Wide Leg Cargo",price:5200,market:6100,cat:"Men",img:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85",tag:"NEW",desc:"Roomy cargo silhouette designed for movement and everyday city wear.",source:"Nairobi marketplace"},
- {id:3,name:"Graphic Cotton Tee",price:2800,market:3500,cat:"Men",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",tag:"HOT",desc:"Heavy cotton tee with a clean graphic-led silhouette.",source:"Nairobi marketplace"},
- {id:4,name:"Everyday Baseball Cap",price:1900,market:2400,cat:"Accessories",img:"https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=85",tag:"",desc:"Low-profile cap that finishes a daily streetwear uniform.",source:"Nairobi marketplace"},
- {id:5,name:"Workwear Denim Jacket",price:6800,market:7900,cat:"Men",img:"https://images.unsplash.com/photo-1495105787522-5334e3ffa0ef?auto=format&fit=crop&w=900&q=85",tag:"LIMITED",desc:"Layer-ready denim jacket with a durable workwear finish.",source:"Nairobi marketplace"},
- {id:6,name:"Relaxed City Shorts",price:3200,market:3900,cat:"Women",img:"https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=900&q=85",tag:"NEW",desc:"Relaxed shorts built for warm Nairobi afternoons and weekends.",source:"Nairobi marketplace"}
+ {id:1,name:"Utility Overshirt",price:950,market:1100,cat:"Women",audience:"Women",img:photoSets.Women[0],tag:"NEW",desc:"Structured utility overshirt with a relaxed streetwear fit.",source:"Nairobi marketplace"},
+ {id:2,name:"Wide Leg Cargo",price:1000,market:1100,cat:"Men",audience:"Men",img:photoSets.Men[0],tag:"NEW",desc:"Roomy cargo silhouette designed for movement and everyday city wear.",source:"Nairobi marketplace"},
+ {id:3,name:"Graphic Cotton Tee",price:750,market:950,cat:"Men",audience:"Men",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",tag:"HOT",desc:"Heavy cotton tee with a clean graphic-led silhouette.",source:"Nairobi marketplace"},
+ {id:4,name:"Everyday Baseball Cap",price:650,market:850,cat:"Accessories",audience:"All",img:"https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=85",tag:"",desc:"Low-profile cap that finishes a daily streetwear uniform.",source:"Nairobi marketplace"},
+ {id:5,name:"Workwear Denim Jacket",price:1100,market:1100,cat:"Men",audience:"Men",img:"https://images.unsplash.com/photo-1495105787522-5334e3ffa0ef?auto=format&fit=crop&w=900&q=85",tag:"LIMITED",desc:"Layer-ready denim jacket with a durable workwear finish.",source:"Nairobi marketplace"},
+ {id:6,name:"Relaxed City Shorts",price:800,market:1000,cat:"Women",audience:"Women",img:"https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=900&q=85",tag:"NEW",desc:"Relaxed shorts built for warm Nairobi afternoons and weekends.",source:"Nairobi marketplace"}
 ];
+let nextId=7;
+for(const audience of ["Men","Women","Kids"]){
+ outfitNames[audience].forEach((name,index)=>{
+  for(let variant=1;variant<=4;variant++){
+   const price=650+((index*37+variant*53)%451);
+   products.push({id:nextId++,name:`${name} ${variant}`,price,market:Math.min(1100,price+100),cat:audience,audience,img:photoSets[audience][(index+variant)%photoSets[audience].length],tag:variant===1?"NEW":"",desc:`Real ${audience.toLowerCase()} ${name.toLowerCase()} outfit from the affordable Eastfits edit.`,source:"Nairobi marketplace"});
+  }
+ });
+}
 let cart=[];
 let filtered=[...products];
 let saved=[];
@@ -1349,7 +1417,8 @@ function render(list, target){
     <button class="heart" aria-label="Save ${p.name}" onclick="event.stopPropagation();toggleSaved(${p.id})">${isSaved?'♥':'♡'}</button>
     <img src="${p.img}" alt="${p.name}" onclick="openModal(${p.id})">
    </div>
-   <h3>${p.name}</h3><div class="price">${money(p.price)}</div>
+  <h3>${p.name}</h3><div class="price">${money(p.price)}</div>
+  <div class="market-row"><span>${p.audience} fit</span><strong>Max KSh 1,100</strong></div>
    <div class="market-row"><span>Market avg.</span><strong>${money(p.market)}</strong></div>
    <button class="add" onclick="addToCart(${p.id})">ADD TO CART</button>
   </article>`;
@@ -1371,9 +1440,16 @@ function toggleSaved(id){saved=saved.includes(id)?saved.filter(item=>item!==id):
 function showCatalogTab(id,button){document.querySelectorAll('.catalog-panel').forEach(panel=>panel.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.catalog-tab').forEach(tab=>tab.classList.remove('active'));button.classList.add('active')}
 function searchProducts(){
  const q=document.getElementById("searchInput").value.toLowerCase().trim();
- filtered=products.filter(p=>(p.name+" "+p.cat).toLowerCase().includes(q));renderAll();
+ filtered=products.filter(p=>(p.name+" "+p.cat+" "+p.audience).toLowerCase().includes(q));renderAll();
 }
 function filterCategory(cat){filtered=products.filter(p=>p.cat===cat);document.getElementById("shopTitle").textContent=cat.toUpperCase();renderAll()}
+function filterAudience(audience,button){
+ document.querySelectorAll('.audience-tab').forEach(tab=>tab.classList.remove('active'));
+ button.classList.add('active');
+ filtered=audience==='All'?[...products]:products.filter(p=>p.audience===audience||p.audience==='All');
+ document.getElementById('shopTitle').textContent=audience==='All'?'ALL PRODUCTS':`${audience.toUpperCase()} FITS`;
+ renderAll();
+}
 function resetProducts(){filtered=[...products];document.getElementById("shopTitle").textContent="ALL PRODUCTS";renderAll()}
 function openModal(id){
  const p=products.find(x=>x.id===id);document.getElementById("modalImg").src=p.img;document.getElementById("modalTitle").textContent=p.name;document.getElementById("modalPrice").textContent=money(p.price);document.getElementById("modalDesc").textContent=p.desc;document.getElementById("modalAdd").onclick=()=>{addToCart(p.id);closeModal()};document.getElementById("modal").classList.add("open")
