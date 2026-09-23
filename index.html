@@ -1382,6 +1382,13 @@ const outfitNames={
  Women:["Ribbed Top","Relaxed Tee","Denim Skirt","Wide Leg Trousers","Cropped Jacket","Cotton Dress","City Shorts","Knit Top","Utility Shirt","Everyday Joggers"],
  Kids:["Play Tee","Mini Joggers","School Hoodie","Denim Shorts","Colour Block Top","Cotton Dress","Weekend Set","Zip Jacket","Graphic Tee","Soft Track Pants"]
 };
+function outfitImage(audience,index,variant){
+ const pool=photoSets[audience];
+ const base=pool[(index*4+variant)%pool.length];
+ const x=(((index*4+variant)%9)+1)/10;
+ const y=(((index+variant)%8)+1)/10;
+ return `${base}&crop=faces&fp-x=${x.toFixed(1)}&fp-y=${y.toFixed(1)}`;
+}
 const products=[
  {id:1,name:"Utility Overshirt",price:950,market:1100,cat:"Women",audience:"Women",img:photoSets.Women[0],tag:"NEW",desc:"Structured utility overshirt with a relaxed streetwear fit.",source:"Nairobi marketplace"},
  {id:2,name:"Wide Leg Cargo",price:1000,market:1100,cat:"Men",audience:"Men",img:photoSets.Men[0],tag:"NEW",desc:"Roomy cargo silhouette designed for movement and everyday city wear.",source:"Nairobi marketplace"},
@@ -1395,7 +1402,7 @@ for(const audience of ["Men","Women","Kids"]){
  outfitNames[audience].forEach((name,index)=>{
   for(let variant=1;variant<=4;variant++){
    const price=650+((index*37+variant*53)%451);
-   products.push({id:nextId++,name:`${name} ${variant}`,price,market:Math.min(1100,price+100),cat:audience,audience,img:photoSets[audience][(index+variant)%photoSets[audience].length],tag:variant===1?"NEW":"",desc:`Real ${audience.toLowerCase()} ${name.toLowerCase()} outfit from the affordable Eastfits edit.`,source:"Nairobi marketplace"});
+  products.push({id:nextId++,name:`${name} ${variant}`,price,market:Math.min(1100,price+100),cat:audience,audience,img:outfitImage(audience,index,variant),tag:variant===1?"NEW":"",desc:`Real ${audience.toLowerCase()} ${name.toLowerCase()} outfit from the affordable Eastfits edit.`,source:"Nairobi marketplace"});
   }
  });
 }
