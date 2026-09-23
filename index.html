@@ -1264,6 +1264,8 @@ footer h4 {
   <button class="audience-tab" onclick="filterAudience('Men', this)">Men</button>
   <button class="audience-tab" onclick="filterAudience('Women', this)">Women</button>
   <button class="audience-tab" onclick="filterAudience('Kids', this)">Kids</button>
+  <button class="audience-tab" onclick="filterAudience('Hoodies', this)">Hoodies</button>
+  <button class="audience-tab" onclick="filterAudience('Electronics', this)">Electronics</button>
 </div>
 <section class="section" id="new">
   <div class="section-head"><h2>NEW ARRIVALS</h2><a href="#shop">EVERYTHING UNDER KSh 1,100 →</a></div>
@@ -1276,6 +1278,8 @@ footer h4 {
     <a class="category" href="#shop" onclick="filterCategory('Men')"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85" alt="Men's streetwear"><h3>MEN'S →</h3></a>
     <a class="category" href="#shop" onclick="filterCategory('Women')"><img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85" alt="Women's streetwear"><h3>WOMEN'S →</h3></a>
     <a class="category" href="#shop" onclick="filterCategory('Accessories')"><img src="https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=85" alt="Streetwear cap"><h3>ACCESSORIES →</h3></a>
+    <a class="category" href="#shop" onclick="filterCategory('Hoodies')"><img src="assets/hoodie_PNG26.png" alt="Hoodies"><h3>HOODIES →</h3></a>
+    <a class="category" href="#shop" onclick="filterCategory('Electronics')"><img src="assets/macbook_PNG101754.png" alt="Electronics"><h3>ELECTRONICS →</h3></a>
   </div>
 </section>
 
@@ -1406,6 +1410,39 @@ for(const audience of ["Men","Women","Kids"]){
   }
  });
 }
+const uploadedProducts=[
+ ["Hoodie Mustard","assets/hoodie_PNG26.png", "Hoodies"],
+ ["Hoodie Green","assets/hoodie_PNG32.png", "Hoodies"],
+ ["Hoodie Purple","assets/hoodie_PNG36.png", "Hoodies"],
+ ["Hoodie White Crest","assets/hoodie_PNG41.png", "Hoodies"],
+ ["Hoodie White Back","assets/hoodie_PNG45.png", "Hoodies"],
+ ["Hoodie White Classic","assets/hoodie_PNG5.png", "Hoodies"],
+ ["Hoodie White Pullover","assets/hoodie_PNG6.png", "Hoodies"],
+ ["Canvas Backpack Olive","assets/backpack_PNG6333.png", "Accessories"],
+ ["Urban Laptop Backpack","assets/backpack_PNG6348.png", "Accessories"],
+ ["AirPods White","assets/airPods_PNG28.png", "Electronics"],
+ ["AirPods Case White","assets/airPods_PNG35.png", "Electronics"],
+ ["AirPods Case Black","assets/airPods_PNG37.png", "Electronics"],
+ ["AirPods Case Clear","assets/airPods_PNG39.png", "Electronics"],
+ ["Apple Watch Sport","assets/apple_watch_PNG30.png", "Electronics"],
+ ["Apple Watch Silver","assets/apple_watch_PNG49.png", "Electronics"],
+ ["Apple Watch Black","assets/apple_watch_PNG55.png", "Electronics"],
+ ["Apple Watch Blue","assets/apple_watch_PNG62.png", "Electronics"],
+ ["Apple Watch Pink","assets/apple_watch_PNG64.png", "Electronics"],
+ ["Apple Watch Gold","assets/apple_watch_PNG67.png", "Electronics"],
+ ["Apple Watch Classic","assets/apple_watch_PNG69.png", "Electronics"],
+ ["Wireless Headphones Black","assets/headphones_PNG101964.png", "Electronics"],
+ ["Wireless Headphones Gray","assets/headphones_PNG101980.png", "Electronics"],
+ ["iPhone 17 Blue","assets/iphone17_PNG17.png", "Electronics"],
+ ["iPhone 17 Silver","assets/iphone17_PNG30.png", "Electronics"],
+ ["iPhone 17 Black","assets/iphone17_PNG32.png", "Electronics"],
+ ["iPhone 17 Gold","assets/iphone17_PNG36.png", "Electronics"],
+ ["MacBook Air","assets/macbook_PNG101754.png", "Electronics"]
+];
+uploadedProducts.forEach(([name,img,cat],index)=>{
+ const price=cat==="Electronics"?850+((index*17)%251):700+((index*31)%401);
+ products.push({id:nextId++,name,price,market:Math.min(1100,price+100),cat,audience:"All",img,tag:"UPLOADED",desc:`Uploaded ${cat.toLowerCase()} product classified for the Eastfits catalog.`,source:"Eastfits uploaded inventory"});
+});
 let cart=[];
 let filtered=[...products];
 let saved=[];
@@ -1425,7 +1462,7 @@ function render(list, target){
     <img src="${p.img}" alt="${p.name}" onclick="openModal(${p.id})">
    </div>
   <h3>${p.name}</h3><div class="price">${money(p.price)}</div>
-  <div class="market-row"><span>${p.audience} fit</span><strong>Max KSh 1,100</strong></div>
+  <div class="market-row"><span>${p.cat} · ${p.audience} fit</span><strong>Max KSh 1,100</strong></div>
    <div class="market-row"><span>Market avg.</span><strong>${money(p.market)}</strong></div>
    <button class="add" onclick="addToCart(${p.id})">ADD TO CART</button>
   </article>`;
@@ -1453,7 +1490,7 @@ function filterCategory(cat){filtered=products.filter(p=>p.cat===cat);document.g
 function filterAudience(audience,button){
  document.querySelectorAll('.audience-tab').forEach(tab=>tab.classList.remove('active'));
  button.classList.add('active');
- filtered=audience==='All'?[...products]:products.filter(p=>p.audience===audience||p.audience==='All');
+ filtered=audience==='All'?[...products]:[...products].filter(p=>p.cat===audience||p.audience===audience||p.audience==='All'&&['Men','Women','Kids'].includes(audience));
  document.getElementById('shopTitle').textContent=audience==='All'?'ALL PRODUCTS':`${audience.toUpperCase()} FITS`;
  renderAll();
 }
