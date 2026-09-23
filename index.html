@@ -1457,7 +1457,11 @@ function render(list, target){
  if(!el)return;
  el.innerHTML="";
  if(!list.length){el.innerHTML='<p style="grid-column:1/-1;padding:30px 0;color:#777">No products found. The clothes have apparently escaped.</p>';return}
+ const renderedImages=new Set();
  list.forEach(p=>{
+  const imageKey=p.img.split("?")[0];
+  if(renderedImages.has(imageKey))return;
+  renderedImages.add(imageKey);
   const isSaved=saved.includes(p.id);
   el.innerHTML+=`<article class="card">
    <div class="product-image">
@@ -1473,7 +1477,22 @@ function render(list, target){
   </article>`;
  })
 }
-function renderAll(){render(filtered,"productGrid");render(filtered,"allProducts");render(products,"priceGrid");render(products.filter(p=>saved.includes(p.id)),"savedGrid")}
+function uniqueProducts(list){
+ const seen=new Set();
+ return list.filter(product=>{
+  const imageKey=product.img.split("?")[0];
+  if(seen.has(imageKey))return false;
+  seen.add(imageKey);
+  return true;
+ });
+}
+function renderAll(){
+ const uniqueFiltered=uniqueProducts(filtered);
+ render(uniqueFiltered.slice(0,6),"productGrid");
+ render(uniqueFiltered.slice(6),"allProducts");
+ render(products,"priceGrid");
+ render(products.filter(p=>saved.includes(p.id)),"savedGrid");
+}
 function addToCart(id){const p=products.find(x=>x.id===id);cart.push(p);updateCart();toast(p.name+" added to cart ✓")}
 function updateCart(){
  document.getElementById("cartBadge").textContent=cart.length;
