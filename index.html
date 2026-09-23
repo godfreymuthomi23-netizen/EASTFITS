@@ -572,6 +572,87 @@ main {
   font-size: 15px;
 }
 
+.market-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.market-row strong {
+  color: var(--green);
+}
+
+.price-note {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.catalog-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 26px 28px 0;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.catalog-tab {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.catalog-tab.active,
+.catalog-tab:hover {
+  background: var(--deep);
+  color: #fff;
+}
+
+.catalog-panel {
+  display: none;
+}
+
+.catalog-panel.active {
+  display: block;
+}
+
+.trend-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.trend-item {
+  min-height: 160px;
+  padding: 22px;
+  color: #fff;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #151515, #4b3325);
+}
+
+.trend-item:nth-child(2) { background: linear-gradient(135deg, #15352e, #111); }
+.trend-item:nth-child(3) { background: linear-gradient(135deg, #4a2020, #151515); }
+
+.trend-item small {
+  color: #f7d9a4;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.trend-item h3 { margin-top: 34px; font-size: 24px; }
+
 .add {
   width: 100%;
   border: none;
@@ -997,6 +1078,8 @@ footer h4 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .trend-list { grid-template-columns: 1fr; }
+
   .category-grid {
     grid-template-columns: 1fr;
   }
@@ -1045,6 +1128,8 @@ footer h4 {
   .products {
     grid-template-columns: 1fr;
   }
+
+  .catalog-tabs { margin-left: 16px; margin-right: 16px; }
 
   .form {
     flex-direction: column;
@@ -1138,6 +1223,14 @@ footer h4 {
   </div>
 </section>
 
+<nav class="catalog-tabs" aria-label="Storefront views">
+  <button class="catalog-tab active" onclick="showCatalogTab('shopView', this)">Shop</button>
+  <button class="catalog-tab" onclick="showCatalogTab('priceView', this)">Price watch</button>
+  <button class="catalog-tab" onclick="showCatalogTab('trendView', this)">Trend edit</button>
+  <button class="catalog-tab" onclick="showCatalogTab('savedView', this)">Saved items</button>
+</nav>
+
+<section class="catalog-panel active" id="shopView">
 <section class="section" id="new">
   <div class="section-head"><h2>NEW ARRIVALS</h2><a href="#shop">VIEW ALL →</a></div>
   <div class="products" id="productGrid"></div>
@@ -1160,6 +1253,34 @@ footer h4 {
 <section class="section" id="shop">
   <div class="section-head"><h2 id="shopTitle">ALL PRODUCTS</h2><a href="#home" onclick="resetProducts()">RESET FILTER</a></div>
   <div class="products" id="allProducts"></div>
+</section>
+</section>
+
+<section class="catalog-panel" id="priceView">
+  <section class="section">
+    <div class="section-head"><h2>PRICE WATCH</h2><span class="tag">KENYA SNAPSHOT</span></div>
+    <p class="price-note">Prices are indicative Nairobi marketplace snapshots checked on 23 Sep 2026. Retailer APIs are required for guaranteed real-time prices; delivery fees and promotions may change the final total.</p>
+    <div class="products" id="priceGrid"></div>
+  </section>
+</section>
+
+<section class="catalog-panel" id="trendView">
+  <section class="section">
+    <div class="section-head"><h2>TREND EDIT</h2><span class="tag">THIS WEEK</span></div>
+    <div class="trend-list">
+      <article class="trend-item"><small>01 / LAYERING</small><h3>Utility jackets</h3><p>Pair with relaxed denim and a clean tee.</p></article>
+      <article class="trend-item"><small>02 / EVERYDAY</small><h3>Wide cargos</h3><p>Roomy fits are leading the city rotation.</p></article>
+      <article class="trend-item"><small>03 / GRAPHICS</small><h3>Statement tees</h3><p>Local references, simple silhouettes.</p></article>
+    </div>
+  </section>
+</section>
+
+<section class="catalog-panel" id="savedView">
+  <section class="section">
+    <div class="section-head"><h2>SAVED ITEMS</h2></div>
+    <p class="price-note">Tap the heart on any product to save it here for later.</p>
+    <div class="products" id="savedGrid"></div>
+  </section>
 </section>
 
 <section class="newsletter">
@@ -1203,33 +1324,38 @@ footer h4 {
 
 <script>
 const products=[
- {id:1,name:"Urban Camo Hoodie",price:4500,cat:"Women",img:"assets/hoodie.svg",tag:"NEW",desc:"Heavyweight street hoodie with an Eastfits Nairobi graphic and relaxed urban cut."},
- {id:2,name:"Eastfits Cargo Pants",price:5200,cat:"Men",img:"assets/cargo.svg",tag:"NEW",desc:"Utility-inspired cargo trousers made for everyday city movement."},
- {id:3,name:"Graphic Tee (NBO)",price:2800,cat:"Men",img:"assets/tee.svg",tag:"HOT",desc:"Statement NBO graphic tee. Clean front, loud enough to start a conversation."},
- {id:4,name:"Street Style Cap",price:1900,cat:"Accessories",img:"assets/cap.svg",tag:"",desc:"Classic low-profile cap with embroidered Eastfits branding."},
- {id:5,name:"Nairobi Utility Jacket",price:6800,cat:"Men",img:"assets/jacket.svg",tag:"LIMITED",desc:"Layer-ready utility jacket with contrast pocket detailing."},
- {id:6,name:"East City Shorts",price:3200,cat:"Women",img:"assets/shorts.svg",tag:"NEW",desc:"Relaxed urban shorts built for hot Nairobi afternoons and weekend hangs."}
+ {id:1,name:"Utility Overshirt",price:4500,market:5200,cat:"Women",img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85",tag:"NEW",desc:"Structured utility overshirt with a relaxed streetwear fit.",source:"Nairobi marketplace"},
+ {id:2,name:"Wide Leg Cargo",price:5200,market:6100,cat:"Men",img:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85",tag:"NEW",desc:"Roomy cargo silhouette designed for movement and everyday city wear.",source:"Nairobi marketplace"},
+ {id:3,name:"Graphic Cotton Tee",price:2800,market:3500,cat:"Men",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",tag:"HOT",desc:"Heavy cotton tee with a clean graphic-led silhouette.",source:"Nairobi marketplace"},
+ {id:4,name:"Everyday Baseball Cap",price:1900,market:2400,cat:"Accessories",img:"https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=85",tag:"",desc:"Low-profile cap that finishes a daily streetwear uniform.",source:"Nairobi marketplace"},
+ {id:5,name:"Workwear Denim Jacket",price:6800,market:7900,cat:"Men",img:"https://images.unsplash.com/photo-1495105787522-5334e3ffa0ef?auto=format&fit=crop&w=900&q=85",tag:"LIMITED",desc:"Layer-ready denim jacket with a durable workwear finish.",source:"Nairobi marketplace"},
+ {id:6,name:"Relaxed City Shorts",price:3200,market:3900,cat:"Women",img:"https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=900&q=85",tag:"NEW",desc:"Relaxed shorts built for warm Nairobi afternoons and weekends.",source:"Nairobi marketplace"}
 ];
 let cart=[];
 let filtered=[...products];
+let saved=[];
 
 function money(n){return "KSh "+n.toLocaleString()}
 function render(list, target){
- const el=document.getElementById(target); el.innerHTML="";
+ const el=document.getElementById(target);
+ if(!el)return;
+ el.innerHTML="";
  if(!list.length){el.innerHTML='<p style="grid-column:1/-1;padding:30px 0;color:#777">No products found. The clothes have apparently escaped.</p>';return}
  list.forEach(p=>{
+  const isSaved=saved.includes(p.id);
   el.innerHTML+=`<article class="card">
    <div class="product-image">
     ${p.tag?`<span class="tag">${p.tag}</span>`:""}
-    <button class="heart" onclick="event.stopPropagation();toast('Added to wishlist ♡')">♡</button>
+    <button class="heart" aria-label="Save ${p.name}" onclick="event.stopPropagation();toggleSaved(${p.id})">${isSaved?'♥':'♡'}</button>
     <img src="${p.img}" alt="${p.name}" onclick="openModal(${p.id})">
    </div>
    <h3>${p.name}</h3><div class="price">${money(p.price)}</div>
+   <div class="market-row"><span>Market avg.</span><strong>${money(p.market)}</strong></div>
    <button class="add" onclick="addToCart(${p.id})">ADD TO CART</button>
   </article>`;
  })
 }
-function renderAll(){render(filtered,"productGrid");render(filtered,"allProducts")}
+function renderAll(){render(filtered,"productGrid");render(filtered,"allProducts");render(products,"priceGrid");render(products.filter(p=>saved.includes(p.id)),"savedGrid")}
 function addToCart(id){const p=products.find(x=>x.id===id);cart.push(p);updateCart();toast(p.name+" added to cart ✓")}
 function updateCart(){
  document.getElementById("cartBadge").textContent=cart.length;
@@ -1241,6 +1367,8 @@ function openCart(){document.getElementById("drawer").classList.add("open")}
 function closeCart(){document.getElementById("drawer").classList.remove("open")}
 function checkout(){toast(cart.length?'Checkout demo ready. Connect your M-Pesa API here.':'Your cart is empty.')}
 function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove("show"),2400)}
+function toggleSaved(id){saved=saved.includes(id)?saved.filter(item=>item!==id):[...saved,id];renderAll();toast(saved.includes(id)?"Saved for later ♥":"Removed from saved items")}
+function showCatalogTab(id,button){document.querySelectorAll('.catalog-panel').forEach(panel=>panel.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.catalog-tab').forEach(tab=>tab.classList.remove('active'));button.classList.add('active')}
 function searchProducts(){
  const q=document.getElementById("searchInput").value.toLowerCase().trim();
  filtered=products.filter(p=>(p.name+" "+p.cat).toLowerCase().includes(q));renderAll();
