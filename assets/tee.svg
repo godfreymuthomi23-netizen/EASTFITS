@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+      <rect width="600" height="600" rx="28" fill="#eef0f1"/>
+      <path d="M190 150l75-45h70l75 45 82 60-57 83-52-40v190H217V253l-52 40-57-83z" fill="#111"/>
+      <text x="300" y="285" text-anchor="middle" font-family="Arial" font-weight="900" font-size="58" fill="#f15a24">NBO</text>
+      <text x="300" y="318" text-anchor="middle" font-family="Arial" font-weight="700" font-size="18" fill="#fff">NARRATIVE • URBAN • ORIGINAL</text>
+    </svg>

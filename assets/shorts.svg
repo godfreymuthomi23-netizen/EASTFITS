@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+      <rect width="600" height="600" rx="28" fill="#eef0f1"/>
+      <path d="M175 145h250l28 250-92 5-61-115-61 115-92-5z" fill="#1f2224"/>
+      <path d="M300 145v120" stroke="#fff" stroke-width="7" opacity=".45"/>
+      <text x="300" y="335" text-anchor="middle" font-family="Arial" font-weight="900" font-size="25" fill="#fff">EAST</text>
+    </svg>

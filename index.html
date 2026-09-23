@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eastfits | Kenyan Streetwear</title>
+<meta name="description" content="Eastfits - Kenyan online streetwear and urban fashion.">
+<style>
+:root {
+  --bg: #f5f1ea;
+  --paper: #fffdf9;
+  --panel: #ffffff;
+  --ink: #151515;
+  --muted: #69615b;
+  --line: rgba(21, 21, 21, 0.08);
+  --soft: #f4efe9;
+  --accent: #d56a28;
+  --accent-strong: #b9501e;
+  --gold: #f3c57a;
+  --deep: #121212;
+  --deep-2: #1b221d;
+  --green: #2a7a5a;
+  --shadow: 0 20px 45px rgba(22, 18, 16, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(180deg, #f8f3ee 0%, #f0ebe4 100%);
+  color: var(--ink);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.topbar {
+  background: linear-gradient(90deg, #111111, #1d1d1d);
+  color: #f9efe6;
+  padding: 10px 16px;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.topbar b {
+  color: var(--gold);
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 253, 249, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.head-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 0 28px;
+}
+
+.logo {
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  font-style: italic;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.search {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  max-width: 420px;
+  flex: 1;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(17, 17, 17, 0.03);
+}
+
+.search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 0 18px;
+  height: 44px;
+  background: transparent;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.search button {
+  border: none;
+  background: var(--deep);
+  color: #fff;
+  width: 46px;
+  height: 44px;
+  font-size: 18px;
+}
+
+.head-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: 6px;
+}
+
+.action {
+  position: relative;
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 56px;
+}
+
+.action .ico {
+  font-size: 22px;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -2px;
+  min-width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.nav {
+  border-top: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.nav-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  padding: 0 30px;
+  height: 52px;
+}
+
+.nav a {
+  position: relative;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.nav a.active,
+.nav a:hover {
+  color: var(--ink);
+}
+
+.nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -18px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+.sale {
+  color: var(--accent-strong) !important;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+main {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr;
+  min-height: 560px;
+  padding: 26px 28px 0;
+  gap: 22px;
+}
+
+.hero-main {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background:
+    linear-gradient(120deg, rgba(18, 18, 18, 0.15), rgba(0, 0, 0, 0.2)),
+    linear-gradient(135deg, #111111 0%, #1a2421 28%, #40392f 100%);
+  box-shadow: var(--shadow);
+}
+
+.hero-main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 70% 35%, rgba(213, 106, 40, 0.42), transparent 22%),
+    linear-gradient(90deg, rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.2)),
+    url("assets/jacket.svg") right center / 52% auto no-repeat;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  max-width: 640px;
+  padding: 90px 52px;
+}
+
+.kicker {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #f7d9a4;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 5vw, 6.2rem);
+  line-height: 0.87;
+  letter-spacing: -0.06em;
+  font-weight: 900;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  max-width: 500px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 16px 26px;
+  margin-top: 28px;
+  box-shadow: 0 14px 35px rgba(181, 80, 30, 0.36);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 46px rgba(181, 80, 30, 0.42);
+}
+
+.hero-side {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 22px;
+}
+
+.hero-tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  min-height: 260px;
+  box-shadow: var(--shadow);
+}
+
+.hero-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(17, 17, 17, 0.05), rgba(17, 17, 17, 0.75));
+}
+
+.tile-copy {
+  position: absolute;
+  z-index: 2;
+  left: 24px;
+  bottom: 20px;
+  color: #fff;
+}
+
+.tile-copy small {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.tile-copy h2 {
+  margin-top: 6px;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  letter-spacing: -0.05em;
+}
+
+.section {
+  padding: 56px 28px 0;
+}
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.section h2 {
+  font-size: clamp(2rem, 2.8vw, 3rem);
+  letter-spacing: -0.07em;
+}
+
+.section-head a {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 14px;
+  box-shadow: 0 12px 26px rgba(17, 17, 17, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px rgba(17, 17, 17, 0.08);
+}
+
+.product-image {
+  position: relative;
+  background: var(--soft);
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1.08;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.heart {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 3;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 20px;
+  color: var(--ink);
+}
+
+.tag {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 3;
+  background: var(--accent);
+  color: #fff;
+  padding: 6px 9px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.card h3 {
+  margin-top: 14px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.price {
+  margin-top: 8px;
+  color: var(--accent-strong);
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.add {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-top: 14px;
+  background: var(--deep);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.add:hover {
+  background: var(--accent-strong);
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.category {
+  position: relative;
+  height: 260px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.category img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.category:hover img {
+  transform: scale(1.06);
+}
+
+.category::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(17, 17, 17, 0.04), rgba(17, 17, 17, 0.72));
+}
+
+.category h3 {
+  position: absolute;
+  z-index: 2;
+  left: 24px;
+  bottom: 24px;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: -0.06em;
+  color: #fff;
+}
+
+.banner {
+  margin: 56px 28px 0;
+  background: linear-gradient(135deg, #1b1b1b, #111c1a 45%, #2d2a27 100%);
+  color: #fff;
+  border-radius: 26px;
+  padding: 34px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+}
+
+.banner h2 {
+  font-size: clamp(2rem, 3.3vw, 3.4rem);
+  letter-spacing: -0.06em;
+}
+
+.banner p {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.04rem;
+}
+
+.newsletter {
+  background: #f2eee8;
+  margin-top: 56px;
+  padding: 60px 22px;
+  text-align: center;
+}
+
+.newsletter h2 {
+  font-size: clamp(2rem, 3vw, 3rem);
+  letter-spacing: -0.06em;
+}
+
+.newsletter p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 560px;
+  margin: 22px auto 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.form input {
+  flex: 1;
+  min-width: 0;
+  height: 52px;
+  border: none;
+  padding: 0 18px;
+  background: transparent;
+  font-size: 15px;
+  outline: none;
+}
+
+.form button {
+  border: none;
+  background: var(--deep);
+  color: #fff;
+  height: 52px;
+  padding: 0 22px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+footer {
+  background: #0d0d0d;
+  color: #fff;
+  margin-top: 56px;
+  padding: 60px 28px 28px;
+}
+
+.footer-grid {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 36px;
+}
+
+.footer-logo {
+  font-size: 38px;
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+}
+
+.footer-logo span {
+  color: var(--accent);
+}
+
+footer p,
+footer a {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.9;
+  font-size: 13px;
+}
+
+footer h4 {
+  margin-bottom: 14px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.socials span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+.copyright {
+  max-width: 1440px;
+  margin: 28px auto 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.58);
+  z-index: 50;
+  display: none;
+}
+
+.drawer.open {
+  display: block;
+}
+
+.drawer-panel {
+  margin-left: auto;
+  width: min(420px, 92vw);
+  height: 100%;
+  background: #fff;
+  padding: 26px 22px 30px;
+  overflow-y: auto;
+}
+
+.drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 10px;
+}
+
+.drawer-head h2 {
+  font-size: 28px;
+  letter-spacing: -0.05em;
+}
+
+.drawer-head button {
+  border: none;
+  background: transparent;
+  font-size: 30px;
+  color: var(--ink);
+}
+
+.cart-item {
+  display: flex;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cart-item img {
+  width: 82px;
+  height: 82px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--soft);
+}
+
+.cart-item h4 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.cart-item p {
+  color: var(--accent-strong);
+  font-weight: 800;
+}
+
+.cart-item button {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  margin-top: 7px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px 0;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.checkout {
+  width: 100%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  padding: 15px 18px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(100px);
+  background: #111;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.7);
+  display: none;
+  place-items: center;
+  z-index: 60;
+  padding: 16px;
+}
+
+.modal.open {
+  display: grid;
+}
+
+.modal-box {
+  position: relative;
+  width: min(860px, 100%);
+  background: #fff;
+  border-radius: 26px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.modal-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--soft);
+}
+
+.modal-info {
+  padding: 32px 28px;
+}
+
+.modal-info h2 {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  letter-spacing: -0.06em;
+}
+
+.modal-info p {
+  margin-top: 18px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 24px;
+}
+
+@media (max-width: 900px) {
+  .head-inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .search {
+    order: 3;
+    width: 100%;
+    max-width: none;
+    flex-basis: 100%;
+  }
+
+  .head-actions {
+    margin-left: auto;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-side {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .modal-box {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .head-inner {
+    padding-left: 16px;
+    padding-right: 16px;
+    gap: 14px;
+  }
+
+  .logo {
+    font-size: 30px;
+  }
+
+  .hero,
+  .section,
+  .footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-copy {
+    padding: 52px 22px;
+  }
+
+  .hero-side {
+    grid-template-columns: 1fr;
+  }
+
+  .products {
+    grid-template-columns: 1fr;
+  }
+
+  .form {
+    flex-direction: column;
+    border-radius: 16px;
+    background: transparent;
+    border: none;
+  }
+
+  .form input,
+  .form button {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+  }
+
+  .form button {
+    margin-top: 10px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<div class="topbar">🇰🇪 <b>KENYAN STREETWEAR</b> • Free delivery on selected Nairobi orders • Secure M-Pesa checkout</div>
+
+<header class="header">
+  <div class="head-inner">
+    <button class="mobile-menu" onclick="toggleNav()">☰</button>
+    <a class="logo" href="#">East<span>fits</span></a>
+    <div class="search">
+      <input id="searchInput" placeholder="Search hoodies, cargos, tees..." oninput="searchProducts()">
+      <button onclick="searchProducts()">⌕</button>
+    </div>
+    <div class="head-actions">
+      <button class="action" onclick="toast('Account area coming next')"><span class="ico">♙</span><span>Account</span></button>
+      <button class="action" onclick="toast('Your wishlist is ready')"><span class="ico">♡</span><span>Wishlist</span></button>
+      <button class="action" onclick="openCart()"><span class="ico">🛒</span><span>Cart</span><b class="badge" id="cartBadge">0</b></button>
+    </div>
+  </div>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="active" href="#home">HOME</a>
+      <a href="#shop">SHOP ALL</a>
+      <a href="#categories">MEN'S⌄</a>
+      <a href="#categories">WOMEN'S⌄</a>
+      <a href="#categories">ACCESSORIES</a>
+      <a href="#new">NEW ARRIVALS</a>
+      <a class="sale" href="#sale">SALE</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-main">
+    <div class="hero-copy">
+      <div class="kicker">STREETWEAR • MADE IN EAST AFRICA</div>
+      <h1>WEAR<br>YOUR<br>VIBE.</h1>
+      <p>Original urban pieces inspired by Nairobi streets, creative culture and the people building what comes next.</p>
+      <a href="#shop" class="cta">SHOP THE COLLECTION →</a>
+    </div>
+  </div>
+  <div class="hero-side">
+    <div class="hero-tile">
+      <img src="assets/tee.svg" alt="Eastfits graphic tee">
+      <div class="tile-copy"><small>NEW DROP</small><h2>NBO GRAPHICS</h2></div>
+    </div>
+    <div class="hero-tile">
+      <img src="assets/cargo.svg" alt="Eastfits cargo pants">
+      <div class="tile-copy"><small>BUILT FOR THE CITY</small><h2>URBAN CARGO</h2></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="new">
+  <div class="section-head"><h2>NEW ARRIVALS</h2><a href="#shop">VIEW ALL →</a></div>
+  <div class="products" id="productGrid"></div>
+</section>
+
+<section class="section" id="categories">
+  <div class="section-head"><h2>SHOP BY CATEGORY</h2><a href="#shop">EXPLORE →</a></div>
+  <div class="category-grid">
+    <a class="category" href="#shop" onclick="filterCategory('Men')"><img src="assets/cargo.svg"><h3>MEN'S →</h3></a>
+    <a class="category" href="#shop" onclick="filterCategory('Women')"><img src="assets/hoodie.svg"><h3>WOMEN'S →</h3></a>
+    <a class="category" href="#shop" onclick="filterCategory('Accessories')"><img src="assets/cap.svg"><h3>ACCESSORIES →</h3></a>
+  </div>
+</section>
+
+<section class="banner" id="sale">
+  <div><h2>THE EASTFITS CITY PACK</h2><p>Selected street essentials. Limited pieces. No boring outfits.</p></div>
+  <a href="#shop" class="cta">SHOP SALE</a>
+</section>
+
+<section class="section" id="shop">
+  <div class="section-head"><h2 id="shopTitle">ALL PRODUCTS</h2><a href="#home" onclick="resetProducts()">RESET FILTER</a></div>
+  <div class="products" id="allProducts"></div>
+</section>
+
+<section class="newsletter">
+  <h2>JOIN THE EASTFITS CREW</h2>
+  <p>New drops, restocks and offers. No spam, because humanity has suffered enough.</p>
+  <form class="form" onsubmit="event.preventDefault(); toast('You are on the list. Welcome to Eastfits!')">
+    <input type="email" required placeholder="Your email address">
+    <button>JOIN NOW</button>
+  </form>
+</section>
+</main>
+
+<footer>
+ <div class="footer-grid">
+  <div><div class="footer-logo">East<span>fits</span></div><p>Kenyan online streetwear and urban fashion brand.</p><div class="socials"><span>◎</span><span>f</span><span>𝕏</span><span>♪</span></div></div>
+  <div><h4>LINKS</h4><p><a href="#home">About Us</a></p><p><a href="#shop">Shop</a></p><p><a href="#categories">Categories</a></p><p><a href="#sale">Sale</a></p></div>
+  <div><h4>HELP</h4><p>Shipping</p><p>Returns</p><p>Size Guide</p><p>FAQ</p></div>
+  <div><h4>CONTACT</h4><p>📍 Nairobi, Kenya</p><p>📱 +254 700 000 000</p><p>✉ hello@eastfits.co.ke</p></div>
+ </div>
+ <div class="copyright">© 2026 Eastfits. Designed for the streets of East Africa.</div>
+</footer>
+
+<div class="drawer" id="drawer" onclick="if(event.target===this)closeCart()">
+ <div class="drawer-panel">
+  <div class="drawer-head"><h2>Your Cart</h2><button onclick="closeCart()">×</button></div>
+  <div id="cartItems"></div>
+  <div class="total"><span>Total</span><span id="cartTotal">KSh 0</span></div>
+  <button class="checkout" onclick="checkout()">CHECKOUT WITH M-PESA →</button>
+ </div>
+</div>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+ <div class="modal-box">
+  <button class="close" onclick="closeModal()">×</button>
+  <img id="modalImg" src="" alt="">
+  <div class="modal-info"><h2 id="modalTitle"></h2><div class="price" id="modalPrice"></div><p id="modalDesc"></p><button class="cta" id="modalAdd">ADD TO CART</button></div>
+ </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const products=[
+ {id:1,name:"Urban Camo Hoodie",price:4500,cat:"Women",img:"assets/hoodie.svg",tag:"NEW",desc:"Heavyweight street hoodie with an Eastfits Nairobi graphic and relaxed urban cut."},
+ {id:2,name:"Eastfits Cargo Pants",price:5200,cat:"Men",img:"assets/cargo.svg",tag:"NEW",desc:"Utility-inspired cargo trousers made for everyday city movement."},
+ {id:3,name:"Graphic Tee (NBO)",price:2800,cat:"Men",img:"assets/tee.svg",tag:"HOT",desc:"Statement NBO graphic tee. Clean front, loud enough to start a conversation."},
+ {id:4,name:"Street Style Cap",price:1900,cat:"Accessories",img:"assets/cap.svg",tag:"",desc:"Classic low-profile cap with embroidered Eastfits branding."},
+ {id:5,name:"Nairobi Utility Jacket",price:6800,cat:"Men",img:"assets/jacket.svg",tag:"LIMITED",desc:"Layer-ready utility jacket with contrast pocket detailing."},
+ {id:6,name:"East City Shorts",price:3200,cat:"Women",img:"assets/shorts.svg",tag:"NEW",desc:"Relaxed urban shorts built for hot Nairobi afternoons and weekend hangs."}
+];
+let cart=[];
+let filtered=[...products];
+
+function money(n){return "KSh "+n.toLocaleString()}
+function render(list, target){
+ const el=document.getElementById(target); el.innerHTML="";
+ if(!list.length){el.innerHTML='<p style="grid-column:1/-1;padding:30px 0;color:#777">No products found. The clothes have apparently escaped.</p>';return}
+ list.forEach(p=>{
+  el.innerHTML+=`<article class="card">
+   <div class="product-image">
+    ${p.tag?`<span class="tag">${p.tag}</span>`:""}
+    <button class="heart" onclick="event.stopPropagation();toast('Added to wishlist ♡')">♡</button>
+    <img src="${p.img}" alt="${p.name}" onclick="openModal(${p.id})">
+   </div>
+   <h3>${p.name}</h3><div class="price">${money(p.price)}</div>
+   <button class="add" onclick="addToCart(${p.id})">ADD TO CART</button>
+  </article>`;
+ })
+}
+function renderAll(){render(filtered,"productGrid");render(filtered,"allProducts")}
+function addToCart(id){const p=products.find(x=>x.id===id);cart.push(p);updateCart();toast(p.name+" added to cart ✓")}
+function updateCart(){
+ document.getElementById("cartBadge").textContent=cart.length;
+ document.getElementById("cartItems").innerHTML=cart.length?cart.map((p,i)=>`<div class="cart-item"><img src="${p.img}"><div><h4>${p.name}</h4><p>${money(p.price)}</p><button style="border:0;background:none;color:#777;margin-top:7px" onclick="removeCart(${i})">Remove</button></div></div>`).join(""):'<p style="padding:35px 0;color:#777">Your cart is empty.</p>';
+ document.getElementById("cartTotal").textContent=money(cart.reduce((a,p)=>a+p.price,0));
+}
+function removeCart(i){cart.splice(i,1);updateCart()}
+function openCart(){document.getElementById("drawer").classList.add("open")}
+function closeCart(){document.getElementById("drawer").classList.remove("open")}
+function checkout(){toast(cart.length?'Checkout demo ready. Connect your M-Pesa API here.':'Your cart is empty.')}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove("show"),2400)}
+function searchProducts(){
+ const q=document.getElementById("searchInput").value.toLowerCase().trim();
+ filtered=products.filter(p=>(p.name+" "+p.cat).toLowerCase().includes(q));renderAll();
+}
+function filterCategory(cat){filtered=products.filter(p=>p.cat===cat);document.getElementById("shopTitle").textContent=cat.toUpperCase();renderAll()}
+function resetProducts(){filtered=[...products];document.getElementById("shopTitle").textContent="ALL PRODUCTS";renderAll()}
+function openModal(id){
+ const p=products.find(x=>x.id===id);document.getElementById("modalImg").src=p.img;document.getElementById("modalTitle").textContent=p.name;document.getElementById("modalPrice").textContent=money(p.price);document.getElementById("modalDesc").textContent=p.desc;document.getElementById("modalAdd").onclick=()=>{addToCart(p.id);closeModal()};document.getElementById("modal").classList.add("open")
+}
+function closeModal(){document.getElementById("modal").classList.remove("open")}
+function toggleNav(){document.getElementById("nav").style.display=document.getElementById("nav").style.display==="block"?"none":"block"}
+renderAll();updateCart();
+</script>
+</body>
+</html>

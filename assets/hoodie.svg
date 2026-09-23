@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+      <rect width="600" height="600" rx="28" fill="#eef0f1"/>
+      <path d="M170 205l75-55h110l75 55 72 76-56 63-39-38v165H193V306l-39 38-56-63z" fill="#263238"/>
+      <path d="M245 150c4 74 106 74 110 0" fill="none" stroke="#111" stroke-width="18"/>
+      <path d="M195 300l42 35M405 300l-42 35" stroke="#fff" stroke-width="7" opacity=".55"/>
+      <text x="300" y="375" text-anchor="middle" font-family="Arial" font-weight="900" font-size="34" fill="#fff">EASTFITS</text>
+      <text x="300" y="412" text-anchor="middle" font-family="Arial" font-weight="700" font-size="20" fill="#ff5a00">NAIROBI</text>
+    </svg>

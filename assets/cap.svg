@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+      <rect width="600" height="600" rx="28" fill="#eef0f1"/>
+      <path d="M160 275c10-105 75-155 145-155s135 50 145 155c-74 38-216 38-290 0z" fill="#161616"/>
+      <path d="M150 278c94 45 207 45 300 0 68 8 99 42 102 70-107 40-294 40-402 0 3-28 34-62 100-70z" fill="#111"/>
+      <text x="300" y="245" text-anchor="middle" font-family="Arial" font-weight="800" font-size="24" fill="#fff">EASTFITS</text>
+    </svg>
